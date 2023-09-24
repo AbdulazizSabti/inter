@@ -4,15 +4,27 @@ import 'package:flutter/gestures.dart';
 import 'dart:ui';
 
 import 'package:flutter/material.dart';
+import 'package:inter/components/button.dart';
+import 'package:inter/components/textField.dart';
 
 class RegisterPage extends StatelessWidget {
-  const RegisterPage({super.key});
+  RegisterPage({super.key});
+
+  //text editing controllers
+  final emailController = TextEditingController();
+  final usernameController = TextEditingController();
+  final passwordController = TextEditingController();
+  final confirmPasswordController = TextEditingController();
+
+  //sign user up method
+  void signUserUp() {}
 
   @override
   Widget build(BuildContext context) {
+    var emailController2 = emailController;
     return Scaffold(
         backgroundColor: Colors.grey[300],
-        body: const SafeArea(
+        body: SafeArea(
           child: Center(
             child: Column(children: [
               SizedBox(height: 50),
@@ -35,80 +47,98 @@ class RegisterPage extends StatelessWidget {
 
               SizedBox(height: 25),
               //Email===========================================================
-              Padding(
-                padding: EdgeInsets.symmetric(horizontal: 25.0),
-                child: TextField(
-                  decoration: InputDecoration(
-                    enabledBorder: OutlineInputBorder(
-                      borderSide: BorderSide(color: Colors.white),
-                    ),
-                    focusedBorder: OutlineInputBorder(
-                        borderSide: BorderSide(
-                            color: Color.fromARGB(255, 130, 130, 130))),
-                    fillColor: Color.fromARGB(165, 255, 255, 255),
-                    filled: true,
-                  ),
-                ),
+              MyTextField(
+                controller: emailController,
+                hintText: 'Email',
+                obscureText: false,
               ),
 
-              SizedBox(height: 25),
+              const SizedBox(height: 10),
               //username========================================================
-              Padding(
-                padding: EdgeInsets.symmetric(horizontal: 25.0),
-                child: TextField(
-                  decoration: InputDecoration(
-                    enabledBorder: OutlineInputBorder(
-                      borderSide: BorderSide(color: Colors.white),
-                    ),
-                    focusedBorder: OutlineInputBorder(
-                        borderSide: BorderSide(color: Colors.grey)),
-                    fillColor: Color.fromARGB(165, 255, 255, 255),
-                    filled: true,
-                  ),
-                ),
+              MyTextField(
+                controller: usernameController,
+                hintText: 'Username',
+                obscureText: false,
               ),
-              SizedBox(height: 25),
+
+              const SizedBox(height: 10),
               //password========================================================
-              Padding(
-                padding: EdgeInsets.symmetric(horizontal: 25.0),
-                child: TextField(
-                  obscureText: true,
-                  decoration: InputDecoration(
-                    enabledBorder: OutlineInputBorder(
-                      borderSide: BorderSide(color: Colors.white),
-                    ),
-                    focusedBorder: OutlineInputBorder(
-                        borderSide: BorderSide(color: Colors.grey)),
-                    fillColor: Color.fromARGB(165, 255, 255, 255),
-                    filled: true,
-                  ),
-                ),
+              MyTextField(
+                controller: passwordController,
+                hintText: 'Password',
+                obscureText: true,
               ),
-              SizedBox(height: 25),
+
+              const SizedBox(height: 10),
               //ConfirmPassword=================================================
+              MyTextField(
+                controller: confirmPasswordController,
+                hintText: 'Confirm password',
+                obscureText: true,
+              ),
+
+              const SizedBox(height: 10),
+              //Sign up button==================================================
+              MyButton(
+                onTap: signUserUp,
+              ),
+              const SizedBox(height: 50),
+
+              //OR sign up with=================================================
               Padding(
-                padding: EdgeInsets.symmetric(horizontal: 25.0),
-                child: TextField(
-                  obscureText: true,
-                  decoration: InputDecoration(
-                    enabledBorder: OutlineInputBorder(
-                      borderSide: BorderSide(color: Colors.white),
+                padding: const EdgeInsets.symmetric(horizontal: 25.0),
+                child: Row(
+                  children: [
+                    Expanded(
+                      child: Divider(
+                        thickness: 0.5,
+                        color: Colors.black,
+                      ),
                     ),
-                    focusedBorder: OutlineInputBorder(
-                        borderSide: BorderSide(color: Colors.grey)),
-                    fillColor: Color.fromARGB(165, 255, 255, 255),
-                    filled: true,
-                  ),
+                    Padding(
+                      padding: const EdgeInsets.symmetric(horizontal: 10.0),
+                      child: Text(
+                        'Or continue with',
+                        style: TextStyle(color: Colors.grey),
+                      ),
+                    ),
+                    Expanded(
+                      child: Divider(
+                        thickness: 0.5,
+                        color: Colors.black,
+                      ),
+                    ),
+                  ],
                 ),
               ),
-              SizedBox(height: 25),
-              //Sign up button
 
-              //OR sign up with
+              const SizedBox(height: 50),
+              //Google Button===================================================
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  //Google button
+                  Image.asset(
+                    'lib/images/google.png',
+                    height: 65,
+                  ),
+                ],
+              ),
 
-              //Google Button
-
-              //Have an account? Sign in now
+              SizedBox(height: 50),
+              //Have an account? Sign in now====================================
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Text('Have an account?'),
+                  const SizedBox(width: 4),
+                  Text(
+                    'Log in',
+                    style: TextStyle(
+                        color: Colors.blue, fontWeight: FontWeight.bold),
+                  )
+                ],
+              )
             ]),
           ),
         ));
