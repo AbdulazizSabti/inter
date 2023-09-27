@@ -21,7 +21,7 @@ class MyTextField extends StatelessWidget {
         obscureText: obscureText,
         decoration: InputDecoration(
           enabledBorder: OutlineInputBorder(
-            borderSide: BorderSide(color: Colors.white),
+            borderSide: BorderSide(color: Color.fromARGB(255, 0, 0, 0)),
           ),
           focusedBorder:
               OutlineInputBorder(borderSide: BorderSide(color: Colors.grey)),

@@ -28,7 +28,7 @@ class _LoginPageState extends State<LoginPage> {
               Align(
                 alignment: Alignment.topCenter,
                 child: Image.asset(
-                  'lib/images/google.png',
+                  'lib/images/googlee.png',
                   height: 180.0, // Adjust the height here
                 ),
               ),

@@ -23,18 +23,22 @@ class RegisterPage extends StatelessWidget {
   Widget build(BuildContext context) {
     var emailController2 = emailController;
     return Scaffold(
-        backgroundColor: Colors.grey[300],
+        backgroundColor: Colors.white,
         body: SafeArea(
+            child: SingleChildScrollView(
           child: Center(
             child: Column(children: [
-              SizedBox(height: 50),
+              SizedBox(height: 20),
 
               //logo
-              Icon(
-                Icons.school_rounded,
-                size: 100,
+              Align(
+                alignment: Alignment.topCenter,
+                child: Image.asset(
+                  'lib/images/tadreby_icon.png',
+                  height: 180.0, // Adjust the height here
+                ),
               ),
-              SizedBox(height: 50),
+              SizedBox(height: 20),
 
               //welcom
               Text(
@@ -125,22 +129,23 @@ class RegisterPage extends StatelessWidget {
                 ],
               ),
 
-              SizedBox(height: 50),
+              SizedBox(height: 25),
               //Have an account? Sign in now====================================
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   Text('Have an account?'),
                   const SizedBox(width: 4),
-                  Text(
-                    'Log in',
-                    style: TextStyle(
-                        color: Colors.blue, fontWeight: FontWeight.bold),
-                  )
+                  TextButton(
+                    onPressed: () {
+                      // logic here
+                    },
+                    child: Text('Log in'),
+                  ),
                 ],
               )
             ]),
           ),
-        ));
+        )));
   }
 }
