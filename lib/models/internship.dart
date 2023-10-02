@@ -4,9 +4,10 @@ class Internship {
   final String imagePath;
   final String description;
 
-  Internship(
-      {required this.name,
-      required this.location,
-      required this.imagePath,
-      required this.description});
+  Internship({
+    required this.name,
+    required this.location,
+    required this.imagePath,
+    required this.description,
+  });
 }
