@@ -1,9 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:inter/models/internship.dart';
 
+import '../page-1/internshipDetailsScreen.dart';
+
 class InternshipTitle extends StatelessWidget {
   Internship internship;
-  InternshipTitle({super.key, required this.internship});
+  Function()? onTap;
+  InternshipTitle({super.key, required this.internship, required this.onTap});
 
   @override
   Widget build(BuildContext context) {
@@ -17,11 +20,17 @@ class InternshipTitle extends StatelessWidget {
       child: Column(
         children: [
           // internship pic
-          ClipRRect(
-            borderRadius: BorderRadius.circular(8),
-            child: Image.asset(internship.imagePath),
+          Padding(
+            padding: EdgeInsets.all(8.0), // Adjust the padding as needed
+            child: ClipRRect(
+              borderRadius: BorderRadius.circular(8),
+              child: Image.asset(
+                internship.imagePath,
+                height: 60, // Adjust the height as needed
+                width: 60, // Adjust the width as needed
+              ),
+            ),
           ),
-
           SizedBox(
             height: 10,
           ),
@@ -53,24 +62,32 @@ class InternshipTitle extends StatelessWidget {
               ),
 
               // Apply button
-              Container(
-                padding: EdgeInsets.all(20),
-                decoration: BoxDecoration(
-                  color: Colors.black,
-                  borderRadius: BorderRadius.only(
-                    topLeft: Radius.circular(12),
-                    bottomRight: Radius.circular(12),
+              GestureDetector(
+                onTap: () {
+                  Navigator.of(context).push(
+                    MaterialPageRoute(
+                      builder: (context) =>
+                          InternshipDetailsScreen(internship: internship),
+                    ),
+                  );
+                },
+                child: Container(
+                  padding: EdgeInsets.all(20),
+                  decoration: BoxDecoration(
+                    color: Colors.black,
+                    borderRadius: BorderRadius.only(
+                      topLeft: Radius.circular(12),
+                      bottomRight: Radius.circular(12),
+                    ),
                   ),
-                ),
-                child: Icon(
-                  Icons.add,
-                  color: Colors.white,
+                  child: Icon(
+                    Icons.double_arrow,
+                    color: Colors.white,
+                  ),
                 ),
               ),
             ],
           ),
-
-          // button to apply
         ],
       ),
     );
