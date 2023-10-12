@@ -47,7 +47,22 @@ class InternshipDetailsScreen extends StatelessWidget {
                 ],
               ),
             ),
-
+            Padding(
+              padding: const EdgeInsets.all(12),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceAround,
+                children: [
+                  // Internship name
+                  Text(
+                    internship.description,
+                    style: TextStyle(
+                      fontWeight: FontWeight.bold,
+                      fontSize: 16,
+                    ),
+                  ),
+                ],
+              ),
+            ),
             SizedBox(height: 10),
 
             // Scrollable Box for Internship Details

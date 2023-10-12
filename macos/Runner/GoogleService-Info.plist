@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>API_KEY</key>
+	<string>AIzaSyAqNrW6NTH7J2aQUtOApMg_QnN8JPPTN4w</string>
+	<key>GCM_SENDER_ID</key>
+	<string>804579935016</string>
+	<key>PLIST_VERSION</key>
+	<string>1</string>
+	<key>BUNDLE_ID</key>
+	<string>com.example.inter.RunnerTests</string>
+	<key>PROJECT_ID</key>
+	<string>tadreby-c2ce0</string>
+	<key>STORAGE_BUCKET</key>
+	<string>tadreby-c2ce0.appspot.com</string>
+	<key>IS_ADS_ENABLED</key>
+	<false></false>
+	<key>IS_ANALYTICS_ENABLED</key>
+	<false></false>
+	<key>IS_APPINVITE_ENABLED</key>
+	<true></true>
+	<key>IS_GCM_ENABLED</key>
+	<true></true>
+	<key>IS_SIGNIN_ENABLED</key>
+	<true></true>
+	<key>GOOGLE_APP_ID</key>
+	<string>1:804579935016:ios:bf6aea4bda7ad77a01461d</string>
+	<key>DATABASE_URL</key>
+	<string>https://tadreby-c2ce0-default-rtdb.firebaseio.com</string>
+</dict>
+</plist>

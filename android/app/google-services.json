@@ -1,0 +1,30 @@
+{
+  "project_info": {
+    "project_number": "804579935016",
+    "firebase_url": "https://tadreby-c2ce0-default-rtdb.firebaseio.com",
+    "project_id": "tadreby-c2ce0",
+    "storage_bucket": "tadreby-c2ce0.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:804579935016:android:6fc3d588973cd04d01461d",
+        "android_client_info": {
+          "package_name": "com.example.inter"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyB_KolU23b7Ydqt4tYo2KuImfVlFAKSoMc"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

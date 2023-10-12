@@ -4,6 +4,7 @@ class Application {
   final String imagePath;
   final String description;
   final String detail;
+  //Location,, Uni,, GPA,,
   String status;
 
   Application({
