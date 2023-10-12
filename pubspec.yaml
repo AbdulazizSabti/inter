@@ -65,6 +65,7 @@ flutter:
     - lib/images/tadreby_icon.png
     - lib/images/ibm.png
     - lib/images/microsoft.png
+    - lib/images/USER_PIC.png
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware
 

@@ -1,0 +1,44 @@
+import 'package:flutter/material.dart';
+import 'package:inter/models/internshipApplication.dart'; // Import your application model
+
+class ApplicationsScreen extends StatefulWidget {
+  @override
+  _ApplicationsScreenState createState() => _ApplicationsScreenState();
+}
+
+class _ApplicationsScreenState extends State<ApplicationsScreen> {
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title:
+            Text('Internship Applications'), // Change the title to your liking
+      ),
+      body: Padding(
+        padding: EdgeInsets.all(16.0), // Adjust padding as needed
+        child: Column(
+          children: [
+            // Your content here, such as a ListView of internship applications
+            // Example:
+            ListView.builder(
+              itemCount:
+                  applications.length, // Replace with your list of applications
+              itemBuilder: (context, index) {
+                final application = applications[index];
+                return ListTile(
+                  title: Text(application.name),
+                  subtitle: Text(application.email),
+                  trailing: Text(application.status),
+                  onTap: () {
+                    // Navigate to a screen where you can manage this application
+                    // You can pass the application data as an argument
+                  },
+                );
+              },
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+}

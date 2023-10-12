@@ -1,13 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:inter/models/internship.dart';
+import 'package:inter/models/internshipApplication.dart';
 import 'package:inter/page-1/Test.dart';
 
-import 'internshipList.dart';
+class ApplicationDetailsScreen extends StatelessWidget {
+  final Application application;
 
-class InternshipDetailsScreen extends StatelessWidget {
-  final Internship internship;
-
-  InternshipDetailsScreen({Key? key, required this.internship})
+  ApplicationDetailsScreen({Key? key, required this.application})
       : super(key: key);
 
   @override
@@ -24,21 +22,21 @@ class InternshipDetailsScreen extends StatelessWidget {
             ),
             SizedBox(height: 5),
 
-            // Internship Image, Name, and Buttons
+            // USER Image, Name, and Buttons
             Padding(
               padding: const EdgeInsets.all(12.0),
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceAround,
                 children: [
-                  // Internship Image (Small Size)
+                  // User Image (Small Size)
                   Image.asset(
-                    internship.imagePath,
+                    application.imagePath,
                     height: 60, // Adjust the size as needed
                   ),
 
-                  // Internship Name
+                  // User Name
                   Text(
-                    internship.name,
+                    application.name,
                     style: TextStyle(
                       fontWeight: FontWeight.bold,
                       fontSize: 24,
@@ -47,10 +45,26 @@ class InternshipDetailsScreen extends StatelessWidget {
                 ],
               ),
             ),
+            Padding(
+              padding: const EdgeInsets.all(12),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceAround,
+                children: [
+                  // Email
+                  Text(
+                    application.email,
+                    style: TextStyle(
+                      fontWeight: FontWeight.bold,
+                      fontSize: 16,
+                    ),
+                  ),
+                ],
+              ),
+            ),
 
             SizedBox(height: 10),
 
-            // Scrollable Box for Internship Details
+            // Scrollable Box for the User's Details "CV"
             Expanded(
               child: Container(
                 decoration: BoxDecoration(
@@ -62,7 +76,7 @@ class InternshipDetailsScreen extends StatelessWidget {
                   child: Padding(
                     padding: EdgeInsets.symmetric(horizontal: 16.0),
                     child: Text(
-                      internship.details,
+                      application.detail,
                       style: TextStyle(
                           fontWeight: FontWeight.bold,
                           fontSize: 15,
@@ -75,7 +89,7 @@ class InternshipDetailsScreen extends StatelessWidget {
 
             SizedBox(height: 25),
 
-            // Apply and Back Buttons
+            // Accept, Reject and Back Buttons
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceAround,
               children: [
@@ -83,7 +97,7 @@ class InternshipDetailsScreen extends StatelessWidget {
                   onPressed: () {
                     Navigator.of(context).push(
                       MaterialPageRoute(
-                        builder: (context) => internshipListPage(),
+                        builder: (context) => TestPage(),
                       ),
                     );
                     // Navigate back to the Internship List Page here
@@ -107,11 +121,11 @@ class InternshipDetailsScreen extends StatelessWidget {
                 ),
                 ElevatedButton(
                   onPressed: () {
-                    // Handle Apply button action here
+                    // Handle Accept button action here
                   },
                   style: ElevatedButton.styleFrom(
                     primary: Color.fromARGB(
-                        255, 93, 144, 255), // Change the background color
+                        255, 3, 132, 91), // Change the background color
                     onPrimary: Colors.white, // Change the text color
                     padding: EdgeInsets.all(16), // Adjust the button's padding
                     shape: RoundedRectangleBorder(
@@ -120,7 +134,29 @@ class InternshipDetailsScreen extends StatelessWidget {
                     ),
                   ),
                   child: Text(
-                    'Apply Now',
+                    'Accept',
+                    style: TextStyle(
+                      fontSize: 18, // Adjust the button's text size
+                    ),
+                  ),
+                ),
+                ElevatedButton(
+                  onPressed: () {
+                    // Handle Reject button action here
+                  },
+                  style: ElevatedButton.styleFrom(
+                    primary: Color.fromARGB(
+                        174, 161, 0, 0), // Change the background color
+                    onPrimary: Color.fromARGB(
+                        255, 255, 255, 255), // Change the text color
+                    padding: EdgeInsets.all(16), // Adjust the button's padding
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(
+                          12), // Adjust the button's corner radius
+                    ),
+                  ),
+                  child: Text(
+                    'Reject',
                     style: TextStyle(
                       fontSize: 18, // Adjust the button's text size
                     ),
