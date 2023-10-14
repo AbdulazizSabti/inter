@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:inter/components/internship_title.dart';
 import 'package:inter/models/internship.dart';
 import 'package:inter/models/internshipApplication.dart';
+import 'package:inter/page-1/Student_Home_page.dart';
 import '../components/applicationTitle.dart';
 
 class TestPage extends StatefulWidget {
@@ -26,32 +27,40 @@ class _TestPageState extends State<TestPage> {
         padding: EdgeInsets.all(16.0),
         child: Column(
           children: <Widget>[
-            Align(
-              alignment: Alignment.topCenter,
-              child: Image.asset(
-                'lib/images/tadreby_icon.png',
-                height: 180.0, // Adjust the height here
-              ),
-            ),
-            Container(
-              padding: const EdgeInsets.all(12),
-              margin: const EdgeInsets.symmetric(horizontal: 15),
-              decoration: BoxDecoration(
-                color: Colors.grey[200],
-                borderRadius: BorderRadius.circular(8),
-              ),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: const [
-                  Text(
-                    'Search',
-                    style: TextStyle(color: Colors.grey),
+            GestureDetector(
+              onTap: () {
+                // Add the navigation action here
+                Navigator.of(context).push(
+                  MaterialPageRoute(
+                    builder: (context) =>
+                        StudentHomePage(), // Replace with the destination screen
                   ),
-                  Icon(
-                    Icons.search,
-                    color: Colors.grey,
-                  ),
-                ],
+                );
+              },
+              child: Container(
+                width: 200, // Adjust the width as needed
+                decoration: BoxDecoration(
+                  color: Colors.grey[200], // Background color
+                  borderRadius: BorderRadius.circular(8), // Rounded corners
+                  border: Border.all(
+                      color: Colors.blue, width: 2), // Border color and width
+                ),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceAround,
+                  children: const [
+                    Text(
+                      'Internship List',
+                      style: TextStyle(
+                        color: Colors.black, // Text color
+                        fontSize: 18,
+                      ),
+                    ),
+                    Icon(
+                      Icons.school,
+                      color: Colors.black, // Icon color
+                    ),
+                  ],
+                ),
               ),
             ),
             //Message
@@ -112,12 +121,6 @@ class _TestPageState extends State<TestPage> {
                 },
               ),
             ),
-
-            Padding(
-              padding:
-                  EdgeInsets.only(top: 25, left: 25, right: 25, bottom: 25),
-              child: Divider(color: Colors.white),
-            )
           ],
         ),
       ),

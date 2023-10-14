@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:inter/page-1/internshipList.dart';
 
 class StudentHomePage extends StatefulWidget {
   const StudentHomePage({Key? key});
@@ -97,7 +98,7 @@ class _StudentHomePageState extends State<StudentHomePage> {
     ),
     Center(
       //Logic Home
-      child: Text('Home Page'),
+      child: internshipListPage(),
     ),
     Center(
       //Logic Chat

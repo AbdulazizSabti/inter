@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:inter/page-1/Test.dart';
+import 'package:inter/page-1/internshipList.dart';
 
 class CompanyHomePage extends StatefulWidget {
   const CompanyHomePage({Key? key});
@@ -93,13 +95,13 @@ class _CompanyHomePageState extends State<CompanyHomePage> {
       child: Text('Profile Page'),
     ),
     Center(
-      //Logic internship
-      child: Text('Internship page'),
-    ),
+        //Logic internship
+        // child: internshipListPage(),
+        ),
     Center(
-      //Logic Home
-      child: Text('Home Page'),
-    ),
+        //Logic Home
+        // child: TestPage(),
+        ),
     Center(
       //Logic chat
       child: Text('Chat Page'),

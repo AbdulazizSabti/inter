@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:inter/models/internship.dart';
+import 'package:inter/page-1/Comapny_Home_page.dart';
+import 'package:inter/page-1/Student_Home_page.dart';
 import 'package:inter/page-1/Test.dart';
 
 import 'internshipList.dart';
@@ -98,7 +100,7 @@ class InternshipDetailsScreen extends StatelessWidget {
                   onPressed: () {
                     Navigator.of(context).push(
                       MaterialPageRoute(
-                        builder: (context) => internshipListPage(),
+                        builder: (context) => StudentHomePage(),
                       ),
                     );
                     // Navigate back to the Internship List Page here
