@@ -2,6 +2,8 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:inter/page-1/EditCompanyProfile.dart';
+import 'package:inter/page-1/Search_for_inernship.dart';
+import 'package:inter/page-1/Search_for_student.dart';
 import 'package:inter/page-1/Test.dart';
 import 'package:inter/page-1/ViewCompnyProfile.dart';
 import 'package:inter/page-1/postInternship.dart';
@@ -146,7 +148,7 @@ class _CompanyHomePageState extends State<CompanyHomePage> {
     ),
     Center(
       //Logic Search
-      child: Text('Search Page'),
+      child: SearchForStudent(),
     ),
   ];
 
