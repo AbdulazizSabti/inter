@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:inter/page-1/Comapny_Home_page.dart';
 import 'register.dart';
-import 'package:firebase_auth/firebase_auth.dart'; 
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:inter/page-1/Student_Home_page.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 
@@ -14,7 +14,7 @@ class LoginPage extends StatefulWidget {
 
 class _LoginPageState extends State<LoginPage> {
   bool _passwordVisible = false; // Track password visibility
-  final auth =FirebaseAuth.instance;
+  final auth = FirebaseAuth.instance;
   final emailController = TextEditingController();
   final passwordController = TextEditingController();
   bool validateEmail(String email) {
@@ -23,9 +23,9 @@ class _LoginPageState extends State<LoginPage> {
     RegExp regex = RegExp(pattern);
     return regex.hasMatch(email);
   }
-   bool validateFields() {
-    if (emailController.text.isEmpty ||
-        passwordController.text.isEmpty ) {
+
+  bool validateFields() {
+    if (emailController.text.isEmpty || passwordController.text.isEmpty) {
       showDialog(
         context: context,
         builder: (BuildContext context) {
@@ -122,28 +122,27 @@ class _LoginPageState extends State<LoginPage> {
         }
       } catch (e) {
         // login error handling here
-         showDialog(
-        context: context,
-        builder: (BuildContext context) {
-          return AlertDialog(
-            title: Text('Error'),
-            content: Text('The password or email is incorrect'),
-            actions: [
-              ElevatedButton(
-                onPressed: () {
-                  Navigator.of(context).pop();
-                },
-                child: Text('OK'),
-              ),
-            ],
-          );
-        },
-      );
+        showDialog(
+          context: context,
+          builder: (BuildContext context) {
+            return AlertDialog(
+              title: Text('Error'),
+              content: Text('The password or email is incorrect'),
+              actions: [
+                ElevatedButton(
+                  onPressed: () {
+                    Navigator.of(context).pop();
+                  },
+                  child: Text('OK'),
+                ),
+              ],
+            );
+          },
+        );
         print(e.toString());
       }
     }
   }
-
 
   @override
   Widget build(BuildContext context) {
@@ -157,13 +156,6 @@ class _LoginPageState extends State<LoginPage> {
                 alignment: Alignment.topCenter,
                 child: Image.asset(
                   'lib/images/tadreby_icon.png',
-                  height: 180.0, // Adjust the height here
-                ),
-              ),
-              Align(
-                alignment: Alignment.topCenter,
-                child: Image.asset(
-                  'lib/images/googlee.png',
                   height: 180.0, // Adjust the height here
                 ),
               ),
@@ -204,30 +196,30 @@ class _LoginPageState extends State<LoginPage> {
                   ),
                   SizedBox(height: 20.0),
                   ElevatedButton(
-                    onPressed: logIn ,
-                    child : Text('Login'),
-                  ), 
-                  SizedBox(height: 25),
-              //Does not Have an account? Sign in now====================================
-              Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  Text('Dose not have an account?'),
-                  const SizedBox(width: 4),
-                  TextButton(
-                    onPressed: () {
-                      // Navigate to RegisterPage on button press
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                          builder: (context) => RegisterPage(),
-                        ),
-                      );
-                    },
-                    child: Text('Sign up'),
+                    onPressed: logIn,
+                    child: Text('Login'),
                   ),
-                ],
-              )
+                  SizedBox(height: 25),
+                  //Does not Have an account? Sign in now====================================
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Text('Dose not have an account?'),
+                      const SizedBox(width: 4),
+                      TextButton(
+                        onPressed: () {
+                          // Navigate to RegisterPage on button press
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) => RegisterPage(),
+                            ),
+                          );
+                        },
+                        child: Text('Sign up'),
+                      ),
+                    ],
+                  )
                 ],
               ),
             ],

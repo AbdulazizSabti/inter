@@ -1,5 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:inter/page-1/internshipList.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:inter/page-1/EditCompanyProfile.dart';
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:inter/page-1/Search_for_inernship.dart';
+import 'package:inter/page-1/Test.dart';
+import 'package:inter/page-1/internshipNewScreen.dart';
 
 class StudentHomePage extends StatefulWidget {
   const StudentHomePage({Key? key});
@@ -11,15 +16,44 @@ class StudentHomePage extends StatefulWidget {
 class _StudentHomePageState extends State<StudentHomePage> {
   int _currentIndex = 2;
   PageController _pageController = PageController(initialPage: 2);
+  User? _user;
+  String? _username;
+
+  @override
+  void initState() {
+    super.initState();
+    _getUser();
+  }
+
+  Future<void> _getUser() async {
+    User? currentUser = FirebaseAuth.instance.currentUser;
+    if (currentUser != null) {
+      setState(() {
+        _user = currentUser;
+      });
+      // Fetch the user's data from Firestore
+      DocumentSnapshot userSnapshot = await FirebaseFirestore.instance
+          .collection('users')
+          .doc(currentUser.uid)
+          .get();
+      if (userSnapshot.exists) {
+        setState(() {
+          _username = userSnapshot['username'];
+        });
+      }
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
+    // User logged in, show home page
     return Scaffold(
       appBar: AppBar(
         title: Align(
           alignment: Alignment.centerLeft,
           child: Text(
-            'Assim AlTayyar',
+            _username ??
+                'Loading...', // Show 'Loading...' if username is not fetched yet
             style: TextStyle(
               fontSize: 15,
               fontWeight: FontWeight.normal,
@@ -89,24 +123,24 @@ class _StudentHomePageState extends State<StudentHomePage> {
 
   final List<Widget> _pages = [
     Center(
-      //Logic Profile
+      // Logic Profile
       child: Text('Profile Page'),
     ),
     Center(
-      //Logic analyze
-      child: Text('Analyze CV'),
+      // Logic analyze
+      child: TestPage(),
     ),
     Center(
-      //Logic Home
-      child: internshipListPage(),
+      // Logic Home
+      child: InternshipListNewScreen(),
     ),
     Center(
-      //Logic Chat
+      // Logic Chat
       child: Text('Chat Page'),
     ),
     Center(
-      //Logic Search
-      child: Text('Search Page'),
+      // Logic Search
+      child: SearchForInternship(),
     ),
   ];
 

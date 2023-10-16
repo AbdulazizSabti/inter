@@ -40,6 +40,9 @@ dependencies:
   # firebase_core: ^2.16.0  ===*WROTE IT ALREADY ON TOP OF THIS FILE*===
   firebase_auth: ^4.10.0
   cloud_firestore: ^4.9.3
+  google_sign_in: ^6.1.5
+  firebase_storage: ^11.2.8
+  image_picker: ^1.0.4
   
 
 dev_dependencies:
@@ -72,6 +75,9 @@ flutter:
     - lib/images/ibm.png
     - lib/images/microsoft.png
     - lib/images/USER_PIC.png
+    - lib/images/Usr.png
+    - lib/images/company.png
+    
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware
 

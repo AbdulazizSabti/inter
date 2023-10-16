@@ -18,15 +18,29 @@ class _internshipListPageState extends State<internshipListPage> {
   void toInternDetailPage() {
     //Method To see the internship Details
   }
-  Future<List<DocumentSnapshot>> fetchInternshipDocuments() async {
-    try {
-      QuerySnapshot querySnapshot =
-          await FirebaseFirestore.instance.collection('Internship').get();
+  //Future<List<DocumentSnapshot>> fetchInternshipDocuments() async {
+  //  try {
+  //    QuerySnapshot querySnapshot =
+  //        await FirebaseFirestore.instance.collection('Internship').get();
 
-      return querySnapshot.docs; // This returns a List of DocumentSnapshot
+  //     return querySnapshot.docs; // This returns a List of DocumentSnapshot
+  //   } catch (e) {
+  //     print('Error fetching internship documents: $e');
+  //     return []; // Handle the error as needed
+  //   }
+  // }
+
+  Future<DocumentSnapshot?> fetchSingleInternship() async {
+    try {
+      DocumentSnapshot documentSnapshot = await FirebaseFirestore.instance
+          .collection('Internship')
+          .doc('hkgxcaOIQbW2RHV5hWOD') // Replace with the actual document ID
+          .get();
+
+      return documentSnapshot;
     } catch (e) {
-      print('Error fetching internship documents: $e');
-      return []; // Handle the error as needed
+      print('Error fetching the internship document: $e');
+      return null; // Handle the error as needed
     }
   }
 
@@ -78,11 +92,12 @@ class _internshipListPageState extends State<internshipListPage> {
             // Internship List (retrieved data)
             Expanded(
               child: FutureBuilder(
-                future: fetchInternshipDocuments(),
+                future: fetchSingleInternship(),
                 builder: (context, snapshot) {
                   if (snapshot.connectionState == ConnectionState.waiting) {
                     return CircularProgressIndicator(); // Display a loading indicator
                   } else if (snapshot.hasError) {
+                    print('Error: ${snapshot.error}');
                     return Text('Error: ${snapshot.error}');
                   } else {
                     if (snapshot.hasData) {
@@ -99,12 +114,14 @@ class _internshipListPageState extends State<internshipListPage> {
 
                           // Create an InternshipTitle widget for each document
                           Internship internship = Internship(
-                            name: data['name'],
-                            location: data['location'],
-                            imagePath: 'imagePath',
-                            description: data['description'],
-                            details: data['details'],
+                            name: data['Name'],
+                            location: data['Location'],
+                            imagePath: data[
+                                'imagePath'], // Use the actual field name from Firestore
+                            description: data['Description'],
+                            details: data['Details'],
                           );
+
                           return InternshipTitle(
                             internship: internship,
                             onTap: () => toInternDetailPage(),

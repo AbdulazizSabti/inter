@@ -18,24 +18,23 @@ class RegisterPage extends StatefulWidget {
 }
 
 class _RegisterPageState extends State<RegisterPage> {
-
   //text editing controllers
-  final auth =FirebaseAuth.instance;
+  final auth = FirebaseAuth.instance;
   final emailController = TextEditingController();
   final usernameController = TextEditingController();
   final passwordController = TextEditingController();
   final confirmPasswordController = TextEditingController();
   bool _passwordVisible = false; // Track password visibility
   bool _confirmPasswordVisible = false; // Track confirm password visibility
-   String? _accountType; 
-     bool validateEmail(String email) {
+  String? _accountType;
+  bool validateEmail(String email) {
     String pattern =
         r'^[\w-]+(\.[\w-]+)*@([\w-]+\.)+[a-zA-Z]{2,7}$'; // Email regex pattern
     RegExp regex = RegExp(pattern);
     return regex.hasMatch(email);
   }
 
-   bool validateFields() {
+  bool validateFields() {
     if (_accountType == null) {
       showDialog(
         context: context,
@@ -145,12 +144,12 @@ class _RegisterPageState extends State<RegisterPage> {
           email: emailController.text,
           password: passwordController.text,
         );
-       var userUID = userCredential.user!.uid;
-      await FirebaseFirestore.instance.collection('users').doc(userUID).set({
-        'email': emailController.text,
-        'username': usernameController.text,
-        'accountType': _accountType,
-      });
+        var userUID = userCredential.user!.uid;
+        await FirebaseFirestore.instance.collection('users').doc(userUID).set({
+          'email': emailController.text,
+          'username': usernameController.text,
+          'accountType': _accountType,
+        });
         if (_accountType == 'Student') {
           Navigator.push(
             context,
@@ -169,88 +168,85 @@ class _RegisterPageState extends State<RegisterPage> {
 
         // Registration success logic here
       } catch (e) {
-
         showDialog(
-        context: context,
-        builder: (BuildContext context) {
-          return AlertDialog(
-            title: Text('Error'),
-            content: Text('The email is already in use'),
-            actions: [
-              ElevatedButton(
-                onPressed: () {
-                  Navigator.of(context).pop();
-                },
-                child: Text('OK'),
-              ),
-            ],
-          );
-        },
-      );
+          context: context,
+          builder: (BuildContext context) {
+            return AlertDialog(
+              title: Text('Error'),
+              content: Text('The email is already in use'),
+              actions: [
+                ElevatedButton(
+                  onPressed: () {
+                    Navigator.of(context).pop();
+                  },
+                  child: Text('OK'),
+                ),
+              ],
+            );
+          },
+        );
         // Registration error handling here
         print(e.toString());
       }
     }
   }
 
-
   @override
   Widget build(BuildContext context) {
     var emailController2 = emailController;
     return Scaffold(
         backgroundColor: Colors.white,
-        body:Padding (
-          padding: EdgeInsets.all(16.0),
+        body: Padding(
+            padding: EdgeInsets.all(16.0),
             child: SingleChildScrollView(
-          child: Center(
-            child: Column(children: [
-              SizedBox(height: 20),
+              child: Center(
+                child: Column(children: [
+                  SizedBox(height: 20),
 
-              //logo
-              Align(
-                alignment: Alignment.topCenter,
-                child: Image.asset(
-                  'lib/images/tadreby_icon.png',
-                  height: 180.0, // Adjust the height here
-                ),
-              ),
-              SizedBox(height: 20),
-
-              //welcom
-              Text(
-                'Welcome Seniory!',
-                style: TextStyle(
-                  color: Color.fromARGB(255, 103, 103, 103),
-                  fontSize: 16,
-                ),
-              ),
-
-              SizedBox(height: 25),
-                // Account type dropdown
-                DropdownButtonFormField<String>(
-                  decoration: InputDecoration(
-                    labelText: 'Account Type',
-                    border: OutlineInputBorder(),
+                  //logo
+                  Align(
+                    alignment: Alignment.topCenter,
+                    child: Image.asset(
+                      'lib/images/tadreby_icon.png',
+                      height: 180.0, // Adjust the height here
+                    ),
                   ),
-                  value: _accountType,
-                  onChanged: (String? newValue) {
-                    setState(() {
-                      _accountType = newValue;
-                    });
-                  },
-                  items: <String>[
-                    'Student',
-                    'Company',
-                  ].map<DropdownMenuItem<String>>((String value) {
-                    return DropdownMenuItem<String>(
-                      value:value,
-                      child: Text(value),
-                    );
-                  }).toList(),
-                ),
-                SizedBox(height: 25),
-                                TextField(
-                     
+                  SizedBox(height: 20),
+
+                  //welcom
+                  Text(
+                    'Welcome Seniory!',
+                    style: TextStyle(
+                      color: Color.fromARGB(255, 103, 103, 103),
+                      fontSize: 16,
+                    ),
+                  ),
+
+                  SizedBox(height: 25),
+                  // Account type dropdown
+                  DropdownButtonFormField<String>(
+                    decoration: InputDecoration(
+                      labelText: 'Account Type',
+                      border: OutlineInputBorder(),
+                    ),
+                    value: _accountType,
+                    onChanged: (String? newValue) {
+                      setState(() {
+                        _accountType = newValue;
+                      });
+                    },
+                    items: <String>[
+                      'Student',
+                      'Company',
+                    ].map<DropdownMenuItem<String>>((String value) {
+                      return DropdownMenuItem<String>(
+                        value: value,
+                        child: Text(value),
+                      );
+                    }).toList(),
+                  ),
+                  SizedBox(height: 25),
+                  TextField(
                     controller: emailController,
                     decoration: InputDecoration(
                       labelText: 'Email',
@@ -259,8 +255,7 @@ class _RegisterPageState extends State<RegisterPage> {
                     keyboardType: TextInputType.emailAddress,
                   ),
                   SizedBox(height: 20.0),
-                   TextField(
-                     
+                  TextField(
                     controller: usernameController,
                     decoration: InputDecoration(
                       labelText: 'Username',
@@ -270,7 +265,6 @@ class _RegisterPageState extends State<RegisterPage> {
                   ),
                   SizedBox(height: 20.0),
                   TextField(
-                     
                     controller: passwordController,
                     obscureText:
                         !_passwordVisible, // Toggle password visibility
@@ -293,10 +287,9 @@ class _RegisterPageState extends State<RegisterPage> {
                   ),
                   SizedBox(height: 20.0),
 
-                      TextField(
-                         
-                        controller: confirmPasswordController,
-                        
+                  TextField(
+                    controller: confirmPasswordController,
+
                     obscureText:
                         !_confirmPasswordVisible, // Toggle password visibility
                     decoration: InputDecoration(
@@ -317,44 +310,37 @@ class _RegisterPageState extends State<RegisterPage> {
                     ),
                   ),
                   SizedBox(height: 20.0),
-                  
 
-              const SizedBox(height: 10),
-              //Sign up button==================================================
-               SizedBox(height: 20.0),
-                ElevatedButton(
-                  onPressed: signUp,
-                  child: Text('Sign up'),
-                ),
-                    
-                  
-               
-              
-
-             
-              //Have an account? Sign in now====================================
-              Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  Text('Have an account?'),
-                  const SizedBox(width: 4),
-                  TextButton(
-                    onPressed: () {
-                      // Navigate to RegisterPage on button press
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                          builder: (context) => LoginPage(),
-                        ),
-                      );
-                    },
-                    child: Text('Log in'),
+                  const SizedBox(height: 10),
+                  //Sign up button==================================================
+                  SizedBox(height: 20.0),
+                  ElevatedButton(
+                    onPressed: signUp,
+                    child: Text('Sign up'),
                   ),
-                ],
-              )
-            ]),
-          ),
-        )));
+
+                  //Have an account? Sign in now====================================
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Text('Have an account?'),
+                      const SizedBox(width: 4),
+                      TextButton(
+                        onPressed: () {
+                          // Navigate to RegisterPage on button press
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) => LoginPage(),
+                            ),
+                          );
+                        },
+                        child: Text('Log in'),
+                      ),
+                    ],
+                  )
+                ]),
+              ),
+            )));
   }
 }
- 

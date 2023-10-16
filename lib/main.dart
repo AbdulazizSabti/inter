@@ -1,6 +1,7 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:inter/firebase_options.dart';
+import 'package:inter/page-1/internshipNewScreen.dart';
 import 'page-1/Comapny_Home_page.dart';
 import 'page-1/Student_Home_page.dart';
 import 'page-1/Test.dart';
@@ -23,7 +24,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      home: StudentHomePage(),
+      home: LoginPage(),
     );
   }
 }

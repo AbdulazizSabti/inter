@@ -4,14 +4,14 @@ import 'package:inter/models/internship.dart';
 import 'package:inter/page-1/Test.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 
-class internshipListPage extends StatefulWidget {
-  const internshipListPage({super.key});
+class internListPage extends StatefulWidget {
+  const internListPage({super.key});
 
   @override
-  _internshipListPageState createState() => _internshipListPageState();
+  _internListPageState createState() => _internListPageState();
 }
 
-class _internshipListPageState extends State<internshipListPage> {
+class _internListPageState extends State<internListPage> {
   //int _currentIndex = 2;
   //PageController _pageController = PageController(initialPage: 2);
 

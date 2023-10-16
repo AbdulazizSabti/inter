@@ -1,6 +1,10 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:inter/page-1/EditCompanyProfile.dart';
 import 'package:inter/page-1/Test.dart';
-import 'package:inter/page-1/internshipList.dart';
+import 'package:inter/page-1/ViewCompnyProfile.dart';
+import 'package:inter/page-1/postInternship.dart';
 
 class CompanyHomePage extends StatefulWidget {
   const CompanyHomePage({Key? key});
@@ -12,18 +16,48 @@ class CompanyHomePage extends StatefulWidget {
 class _CompanyHomePageState extends State<CompanyHomePage> {
   int _currentIndex = 2;
   PageController _pageController = PageController(initialPage: 2);
+  User? _user;
+  String? _username;
+  String? _userImageUrl;
+
+  @override
+  void initState() {
+    super.initState();
+    _getUser();
+  }
+
+  Future<void> _getUser() async {
+    User? currentUser = FirebaseAuth.instance.currentUser;
+    if (currentUser != null) {
+      setState(() {
+        _user = currentUser;
+      });
+      // Fetch the user's data from Firestore
+      DocumentSnapshot userSnapshot = await FirebaseFirestore.instance
+          .collection('users')
+          .doc(currentUser.uid)
+          .get();
+      if (userSnapshot.exists) {
+        setState(() {
+          _username = userSnapshot['username'];
+          _userImageUrl = userSnapshot['image_url'];
+        });
+      }
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
+    // User logged in, show home page
     return Scaffold(
       appBar: AppBar(
-        //backgroundColor: Color.fromARGB(255, 76, 34, 202),
         title: Align(
           alignment: Alignment.centerLeft,
           child: Text(
-            'Tadreby',
+            _username ??
+                'Loading...', // Show 'Loading...' if username is not fetched yet
             style: TextStyle(
-              fontSize: 17,
+              fontSize: 15,
               fontWeight: FontWeight.normal,
             ),
           ),
@@ -31,7 +65,11 @@ class _CompanyHomePageState extends State<CompanyHomePage> {
         leading: Row(
           children: [
             CircleAvatar(
-              backgroundImage: AssetImage('lib/images/tadreby_icon.png'),
+              backgroundImage: _userImageUrl != null
+                  ? NetworkImage(
+                      _userImageUrl!) // Use NetworkImage if URL is available
+                  : AssetImage('lib/images/tadreby_icon.png')
+                      as ImageProvider, // Use AssetImage as fallback
               radius: 20.0,
             ),
           ],
@@ -65,7 +103,7 @@ class _CompanyHomePageState extends State<CompanyHomePage> {
             backgroundColor: Colors.blue,
           ),
           BottomNavigationBarItem(
-            icon: Icon(Icons.post_add),
+            icon: Icon(Icons.description),
             label: 'Internship',
             backgroundColor: Colors.blue,
           ),
@@ -92,16 +130,16 @@ class _CompanyHomePageState extends State<CompanyHomePage> {
   final List<Widget> _pages = [
     Center(
       //Logic profile
-      child: Text('Profile Page'),
+      child: ViewCompanyProfilePage(),
     ),
     Center(
-        //Logic internship
-        // child: internshipListPage(),
-        ),
+      //Logic internship
+      child: PostInternshipPage(),
+    ),
     Center(
-        //Logic Home
-        // child: TestPage(),
-        ),
+      //Logic Home
+      child: TestPage(),
+    ),
     Center(
       //Logic chat
       child: Text('Chat Page'),
