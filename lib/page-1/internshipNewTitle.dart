@@ -7,6 +7,7 @@ class InternshipNewTitle extends StatelessWidget {
   final String details;
   final String location;
   final String imagePath;
+  final String? startDate;
 
   InternshipNewTitle({
     required this.name,
@@ -14,6 +15,7 @@ class InternshipNewTitle extends StatelessWidget {
     required this.details,
     required this.location,
     required this.imagePath,
+    this.startDate,
   });
 
   @override
@@ -70,7 +72,18 @@ class InternshipNewTitle extends StatelessWidget {
                     Text(location),
                   ],
                 ),
-
+                Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    // if null dont show the text
+                    if (startDate != null)
+                      Text("Program starts on " + startDate!,
+                          style: TextStyle(color: Colors.grey[600])),
+                    if (startDate != null)
+                      Text("Last day to apply " + startDate!,
+                          style: TextStyle(color: Colors.grey[600])),
+                  ],
+                ),
                 // Apply button
                 GestureDetector(
                   onTap: () {
@@ -82,6 +95,7 @@ class InternshipNewTitle extends StatelessWidget {
                           details: details,
                           location: location,
                           imagePath: imagePath,
+                          startDate: startDate,
                         ),
                       ),
                     );
@@ -89,7 +103,7 @@ class InternshipNewTitle extends StatelessWidget {
                   child: Container(
                     padding: EdgeInsets.all(20),
                     decoration: BoxDecoration(
-                      color: Colors.black,
+                      color: Color.fromARGB(215, 0, 0, 0),
                       borderRadius: BorderRadius.only(
                         topLeft: Radius.circular(12),
                         bottomRight: Radius.circular(12),

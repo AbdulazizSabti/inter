@@ -6,14 +6,15 @@ class InternshipNewDetailsScreen extends StatelessWidget {
   final String details;
   final String location;
   final String imagePath;
+  final String? startDate;
 
-  InternshipNewDetailsScreen({
-    required this.name,
-    required this.description,
-    required this.details,
-    required this.location,
-    required this.imagePath,
-  });
+  InternshipNewDetailsScreen(
+      {required this.name,
+      required this.description,
+      required this.details,
+      required this.location,
+      required this.imagePath,
+      this.startDate});
 
   @override
   Widget build(BuildContext context) {
@@ -57,8 +58,14 @@ class InternshipNewDetailsScreen extends StatelessWidget {
                 fontWeight: FontWeight.bold,
               ),
             ),
-
-            SizedBox(height: 20),
+            SizedBox(height: 10),
+            if (startDate != null)
+              Text("Program starts on " + startDate!,
+                  style: TextStyle(color: Colors.grey[600])),
+            if (startDate != null)
+              Text("Last day to apply " + startDate!,
+                  style: TextStyle(color: Colors.grey[600])),
+            SizedBox(height: 10),
 
             // Internship details (scrollable)
             Text(

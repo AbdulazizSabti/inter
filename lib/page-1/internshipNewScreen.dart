@@ -43,6 +43,7 @@ class _InternshipListNewScreenState extends State<InternshipListNewScreen> {
                 details: data['details'],
                 location: data['location'],
                 imagePath: data['imagePath'],
+                startDate: data['startDate'],
               );
             },
           );
