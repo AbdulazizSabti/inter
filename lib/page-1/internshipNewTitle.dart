@@ -138,6 +138,7 @@ class InternshipNewTitle extends StatelessWidget {
                                 location: location,
                                 username: username,
                                 startDate: startDate,
+                                image_url: image_url,
                               ),
                             ),
                           );

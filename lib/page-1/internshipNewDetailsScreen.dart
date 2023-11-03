@@ -47,7 +47,7 @@ class _InternshipNewDetailsScreenState
               child: Column(
                 children: [
                   Image.network(
-                    image_url ??
+                    widget.image_url ??
                         'lib/images/tadreby_icon.png', // Use image_url, if available
                     height: 60,
                     width: 60,
