@@ -6,6 +6,7 @@ import 'package:inter/page-1/Search_for_inernship.dart';
 import 'package:inter/page-1/Search_for_student.dart';
 import 'package:inter/page-1/Test.dart';
 import 'package:inter/page-1/ViewCompnyProfile.dart';
+import 'package:inter/page-1/internshipForCompany.dart';
 import 'package:inter/page-1/postInternship.dart';
 
 class CompanyHomePage extends StatefulWidget {
@@ -140,7 +141,9 @@ class _CompanyHomePageState extends State<CompanyHomePage> {
     ),
     Center(
       //Logic Home
-      child: TestPage(),
+      child: CompanyInternshipList(
+        userAccountType: 'Company',
+      ),
     ),
     Center(
       //Logic chat

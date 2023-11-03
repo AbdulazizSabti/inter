@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:inter/models/internshipApplication.dart';
 import 'package:inter/page-1/ApplicationDetailsScreen.dart';
-import '../page-1/internshipDetailsScreen.dart';
 
 class ApplicationTitle extends StatelessWidget {
   Application application;

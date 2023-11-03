@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:inter/components/internship_title.dart';
+
 import 'package:inter/models/internship.dart';
 import 'package:inter/models/internshipApplication.dart';
 import 'package:inter/page-1/Student_Home_page.dart';
