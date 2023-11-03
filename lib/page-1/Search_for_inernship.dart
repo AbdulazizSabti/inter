@@ -27,8 +27,8 @@ class _SearchForInternshipState extends State<SearchForInternship> {
 
   void searchFromFirebase(String query) async {
     final result = await FirebaseFirestore.instance
-        .collection('users')
-        .where('Cname', isGreaterThanOrEqualTo: query)
+        .collection('Internship')
+        .where('title', isGreaterThanOrEqualTo: query)
         .get();
 
     setState(() {
@@ -54,7 +54,7 @@ class _SearchForInternshipState extends State<SearchForInternship> {
         ),
       ),
       body: StreamBuilder<QuerySnapshot>(
-        stream: FirebaseFirestore.instance.collection('users').snapshots(),
+        stream: FirebaseFirestore.instance.collection('Internship').snapshots(),
         builder: (context, snapshots) {
           if (snapshots.connectionState == ConnectionState.waiting) {
             return Center(child: CircularProgressIndicator());
@@ -67,7 +67,7 @@ class _SearchForInternshipState extends State<SearchForInternship> {
             itemBuilder: (context, index) {
               final student = students[index].data() as Map<String, dynamic>;
               final studentName =
-                  student['Cname']?.toString() ?? ''; // Handle null names
+                  student['title']?.toString() ?? ''; // Handle null names
 
               if (studentName.isNotEmpty &&
                   (name.isEmpty ||

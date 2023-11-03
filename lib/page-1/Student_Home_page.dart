@@ -6,6 +6,8 @@ import 'package:inter/page-1/Search_for_inernship.dart';
 import 'package:inter/page-1/Test.dart';
 import 'package:inter/page-1/internshipNewScreen.dart';
 
+import 'Search_for_company.dart';
+
 class StudentHomePage extends StatefulWidget {
   const StudentHomePage({Key? key});
 
@@ -136,7 +138,7 @@ class _StudentHomePageState extends State<StudentHomePage> {
     ),
     Center(
       // Logic Chat
-      child: Text('Chat Page'),
+      child: SearchForCompany(),
     ),
     Center(
       // Logic Search

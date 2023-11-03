@@ -38,12 +38,10 @@ class _InternshipListNewScreenState extends State<InternshipListNewScreen> {
               final data = document.data() as Map<String, dynamic>;
 
               return InternshipNewTitle(
-                name: data['name'],
-                description: data['description'],
+                title: data['title'],
                 details: data['details'],
                 location: data['location'],
-                imagePath: data['imagePath'],
-                startDate: data['startDate'],
+                userEmail: data['userEmail'],
               );
             },
           );

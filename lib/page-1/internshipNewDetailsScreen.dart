@@ -1,26 +1,41 @@
 import 'package:flutter/material.dart';
+import 'package:firebase_core/firebase_core.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:provider/provider.dart';
 
-class InternshipNewDetailsScreen extends StatelessWidget {
-  final String name;
-  final String description;
+class InternshipNewDetailsScreen extends StatefulWidget {
+  final String title;
   final String details;
   final String location;
-  final String imagePath;
+  final String username;
+  final String? image_url;
   final String? startDate;
 
-  InternshipNewDetailsScreen(
-      {required this.name,
-      required this.description,
-      required this.details,
-      required this.location,
-      required this.imagePath,
-      this.startDate});
+  InternshipNewDetailsScreen({
+    required this.title,
+    required this.details,
+    required this.location,
+    required this.username,
+    this.image_url,
+    this.startDate,
+  });
 
+  @override
+  _InternshipNewDetailsScreenState createState() =>
+      _InternshipNewDetailsScreenState();
+}
+
+class _InternshipNewDetailsScreenState
+    extends State<InternshipNewDetailsScreen> {
+  String? image_url; // Variable to store the image URL
+  // Variable to store the username
+
+  @override
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text(name),
+        title: Text(widget.username),
       ),
       body: SingleChildScrollView(
         padding: EdgeInsets.all(16.0),
@@ -31,14 +46,15 @@ class InternshipNewDetailsScreen extends StatelessWidget {
             Center(
               child: Column(
                 children: [
-                  Image.asset(
-                    imagePath,
+                  Image.network(
+                    image_url ??
+                        'lib/images/tadreby_icon.png', // Use image_url, if available
                     height: 60,
                     width: 60,
                   ),
                   SizedBox(height: 10),
                   Text(
-                    name,
+                    widget.username,
                     style: TextStyle(
                       fontSize: 24,
                       fontWeight: FontWeight.bold,
@@ -50,20 +66,20 @@ class InternshipNewDetailsScreen extends StatelessWidget {
 
             SizedBox(height: 20),
 
-            // Internship description
+            // Internship title
             Text(
-              description,
+              widget.title, // Access widget properties using widget.
               style: TextStyle(
                 fontSize: 18,
                 fontWeight: FontWeight.bold,
               ),
             ),
             SizedBox(height: 10),
-            if (startDate != null)
-              Text("Program starts on " + startDate!,
+            if (widget.startDate != null)
+              Text("Program starts on " + widget.startDate!,
                   style: TextStyle(color: Colors.grey[600])),
-            if (startDate != null)
-              Text("Last day to apply " + startDate!,
+            if (widget.startDate != null)
+              Text("Last day to apply " + widget.startDate!,
                   style: TextStyle(color: Colors.grey[600])),
             SizedBox(height: 10),
 
@@ -82,7 +98,7 @@ class InternshipNewDetailsScreen extends StatelessWidget {
               child: SingleChildScrollView(
                 scrollDirection: Axis.vertical, // Make it scroll vertically
                 child: Text(
-                  details,
+                  widget.details, // Access widget properties using widget.
                   style: TextStyle(fontSize: 16),
                 ),
               ),
