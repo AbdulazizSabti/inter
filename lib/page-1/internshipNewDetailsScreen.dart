@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:provider/provider.dart';
+import 'package:intl/intl.dart';
 
 class InternshipNewDetailsScreen extends StatefulWidget {
   final String title;
@@ -9,7 +10,7 @@ class InternshipNewDetailsScreen extends StatefulWidget {
   final String location;
   final String username;
   final String? image_url;
-  final String? startDate;
+  final DateTime? startDate;
 
   InternshipNewDetailsScreen({
     required this.title,
@@ -76,11 +77,15 @@ class _InternshipNewDetailsScreenState
             ),
             SizedBox(height: 10),
             if (widget.startDate != null)
-              Text("Program starts on " + widget.startDate!,
-                  style: TextStyle(color: Colors.grey[600])),
+              Text(
+                'Start Date: ${DateFormat('yyyy-MM-dd HH:mm:ss').format(widget.startDate!)}',
+                style: TextStyle(color: Colors.grey[600]),
+              ),
             if (widget.startDate != null)
-              Text("Last day to apply " + widget.startDate!,
-                  style: TextStyle(color: Colors.grey[600])),
+              Text(
+                'Start Date: ${DateFormat('yyyy-MM-dd HH:mm:ss').format(widget.startDate!)}',
+                style: TextStyle(color: Colors.grey[600]),
+              ),
             SizedBox(height: 10),
 
             // Internship details (scrollable)

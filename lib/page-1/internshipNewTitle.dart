@@ -1,7 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-
+import 'package:intl/intl.dart';
 import '../models/userData.dart';
 import 'internshipNewDetailsScreen.dart';
 
@@ -10,7 +10,7 @@ class InternshipNewTitle extends StatelessWidget {
   final String details;
   final String location;
   final String userEmail;
-  final String? startDate;
+  final DateTime? startDate;
 
   InternshipNewTitle({
     required this.title,
@@ -120,11 +120,15 @@ class InternshipNewTitle extends StatelessWidget {
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           if (startDate != null)
-                            Text("Program starts on " + startDate!,
-                                style: TextStyle(color: Colors.grey[600])),
+                            Text(
+                              'Start Date: ${DateFormat('yyyy-MM-dd').format(startDate!)}',
+                              style: TextStyle(color: Colors.grey[600]),
+                            ),
                           if (startDate != null)
-                            Text("Last day to apply " + startDate!,
-                                style: TextStyle(color: Colors.grey[600])),
+                            Text(
+                              'Start Date: ${DateFormat('yyyy-MM-dd').format(startDate!)}',
+                              style: TextStyle(color: Colors.grey[600]),
+                            ),
                         ],
                       ),
                       // Apply button

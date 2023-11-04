@@ -24,6 +24,12 @@ class _CompanyInternshipListState extends State<CompanyInternshipList> {
     fetchInternships();
   }
 
+  @override
+  void dispose() {
+    // Cancel any ongoing asynchronous operations, e.g., timers, listeners, etc.
+    super.dispose();
+  }
+
   Future<void> fetchInternships() async {
     if (widget.userAccountType == 'Company') {
       final currentUser = FirebaseAuth.instance.currentUser;
@@ -37,18 +43,22 @@ class _CompanyInternshipListState extends State<CompanyInternshipList> {
           final email = userDoc['email'];
 
           // Fetch internships with matching user email
-          final internshipQuery = await FirebaseFirestore.instance
+          FirebaseFirestore.instance
               .collection('Internship')
               .where('userEmail', isEqualTo: email)
-              .get();
-
-          if (internshipQuery.docs.isNotEmpty) {
-            setState(() {
-              internships = internshipQuery.docs
-                  .map((doc) => InternshipData.fromMap(doc.data()))
-                  .toList();
-            });
-          }
+              .get()
+              .then((internshipQuery) {
+            if (mounted) {
+              // Check if the widget is still in the tree
+              setState(() {
+                internships = internshipQuery.docs
+                    .map((doc) => InternshipData.fromMap(doc.data()))
+                    .toList();
+              });
+            }
+          }).catchError((error) {
+            // Handle the error
+          });
         }
       }
     }
@@ -71,10 +81,18 @@ class _CompanyInternshipListState extends State<CompanyInternshipList> {
                   details: internship.details,
                   location: internship.location,
                   userEmail: internship.userEmail,
+                  internshipID: internship.internshipID,
                   startDate: internship.startDate,
                 );
               },
             ),
+      floatingActionButton: FloatingActionButton(
+        onPressed: () {
+          // Handle button press to post a new internship
+          // You can navigate to a new screen or show a dialog for posting.
+        },
+        child: Icon(Icons.add),
+      ),
     );
   }
 }

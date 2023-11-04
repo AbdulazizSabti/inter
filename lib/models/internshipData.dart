@@ -3,13 +3,15 @@ class InternshipData {
   final String details;
   final String location;
   final String userEmail;
-  final String? startDate;
+  final String internshipID;
+  final DateTime? startDate;
 
   InternshipData({
     required this.title,
     required this.details,
     required this.location,
     required this.userEmail,
+    required this.internshipID,
     this.startDate,
   });
 
@@ -20,7 +22,8 @@ class InternshipData {
       details: map['details'],
       location: map['location'],
       userEmail: map['userEmail'],
-      startDate: map['startDate'],
+      internshipID: map['internshipId'],
+      startDate: map['startDate']?.toDate(),
     );
   }
 }
