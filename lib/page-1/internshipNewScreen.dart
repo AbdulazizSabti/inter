@@ -42,6 +42,7 @@ class _InternshipListNewScreenState extends State<InternshipListNewScreen> {
                 details: data['details'],
                 location: data['location'],
                 userEmail: data['userEmail'],
+                internshipID: data['internshipId'],
               );
             },
           );

@@ -3,7 +3,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:inter/page-1/EditCompanyProfile.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:inter/page-1/Search_for_inernship.dart';
-import 'package:inter/page-1/Test.dart';
+
 import 'package:inter/page-1/internshipNewScreen.dart';
 
 import 'Search_for_company.dart';
@@ -130,7 +130,7 @@ class _StudentHomePageState extends State<StudentHomePage> {
     ),
     Center(
       // Logic analyze
-      child: TestPage(),
+      child: InternshipListNewScreen(),
     ),
     Center(
       // Logic Home

@@ -2,8 +2,8 @@ class Application {
   final String name;
   final String email;
   final String imagePath;
-  final String description;
-  final String detail;
+  final String? description;
+  final String? detail;
   //Location,, Uni,, GPA,,
   String status;
 
@@ -11,8 +11,8 @@ class Application {
     required this.name,
     required this.email,
     required this.imagePath,
-    required this.description,
-    required this.detail,
+    this.description,
+    this.detail,
     this.status = 'Pending', // Initial status
   });
 }

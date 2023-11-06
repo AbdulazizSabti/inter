@@ -1,0 +1,79 @@
+import 'package:flutter/material.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
+
+class StudentAppScreen extends StatefulWidget {
+  const StudentAppScreen({Key? key}) : super(key: key);
+
+  @override
+  _StudentAppScreenState createState() => _StudentAppScreenState();
+}
+
+class _StudentAppScreenState extends State<StudentAppScreen> {
+  // Method to retrieve the current user's email
+  Future<String?> getUserEmail() async {
+    User? user = FirebaseAuth.instance.currentUser;
+    if (user != null) {
+      return user.email;
+    }
+    return null; // Return null if the user is not authenticated.
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: Text('Your Applications'),
+      ),
+      body: FutureBuilder<String?>(
+        future: getUserEmail(),
+        builder: (context, userSnapshot) {
+          if (userSnapshot.connectionState == ConnectionState.waiting) {
+            return Center(child: CircularProgressIndicator());
+          } else if (!userSnapshot.hasData) {
+            return Center(child: Text('User is not authenticated.'));
+          } else {
+            final userEmail = userSnapshot.data;
+            return StreamBuilder<QuerySnapshot>(
+              stream: FirebaseFirestore.instance
+                  .collection('Internship')
+                  .where('Application.studentEmail', isEqualTo: userEmail)
+                  .snapshots(),
+              builder: (context, snapshot) {
+                if (snapshot.hasError) {
+                  return Text('Error: ${snapshot.error}');
+                }
+
+                if (snapshot.connectionState == ConnectionState.waiting) {
+                  return Center(child: CircularProgressIndicator());
+                }
+
+                if (!snapshot.hasData || snapshot.data!.docs.isEmpty) {
+                  return Center(child: Text('No applications found.'));
+                }
+
+                List<ApplicationData> applications = snapshot.data!.docs.map((doc) {
+                  Map<String, dynamic> data = doc.data() as Map<String, dynamic>;
+                  return ApplicationData.fromMap(data);
+                }).toList();
+
+                return ListView.builder(
+                  itemCount: applications.length,
+                  itemBuilder: (context, index) {
+                    ApplicationData application = applications[index];
+                    return ApplicationTitle(
+                      title: application.title,
+                      details: application.details,
+                      startDate: application.startDate,
+                      // Add any other properties you want to display
+                    );
+                  },
+                );
+              },
+            );
+          }
+        },
+      ),
+    );
+  }
+}

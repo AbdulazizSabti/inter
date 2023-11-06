@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:inter/page-1/ManageApplications.dart';
 import 'package:provider/provider.dart';
 import 'package:intl/intl.dart';
 
@@ -140,7 +141,16 @@ class _InternshipCompanyDetailsScreenState
                 ),
                 ElevatedButton(
                   onPressed: () {
-                    // Handle Edit button action here
+                    // Navigate to ManageApplicationsScreen
+                    Navigator.of(context).push(
+                      MaterialPageRoute(
+                        builder: (context) {
+                          // Pass the internshipID to the ManageApplicationsScreen
+                          return ManageApplicationsScreen(
+                              internshipID: widget.internshipID);
+                        },
+                      ),
+                    );
                   },
                   style: ElevatedButton.styleFrom(
                     primary: Color.fromARGB(

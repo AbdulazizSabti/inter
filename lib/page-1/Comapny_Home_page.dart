@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:inter/page-1/EditCompanyProfile.dart';
 import 'package:inter/page-1/Search_for_inernship.dart';
 import 'package:inter/page-1/Search_for_student.dart';
-import 'package:inter/page-1/Test.dart';
+
 import 'package:inter/page-1/ViewCompnyProfile.dart';
 import 'package:inter/page-1/internshipForCompany.dart';
 import 'package:inter/page-1/postInternship.dart';

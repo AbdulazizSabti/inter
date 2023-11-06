@@ -10,6 +10,7 @@ class InternshipNewTitle extends StatelessWidget {
   final String details;
   final String location;
   final String userEmail;
+  final String internshipID;
   final DateTime? startDate;
 
   InternshipNewTitle({
@@ -17,6 +18,7 @@ class InternshipNewTitle extends StatelessWidget {
     required this.details,
     required this.location,
     required this.userEmail,
+    required this.internshipID,
     this.startDate,
   });
 
@@ -141,6 +143,7 @@ class InternshipNewTitle extends StatelessWidget {
                                 details: details,
                                 location: location,
                                 username: username,
+                                internshipID: internshipID,
                                 startDate: startDate,
                                 image_url: image_url,
                               ),

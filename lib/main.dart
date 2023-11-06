@@ -6,7 +6,6 @@ import 'package:inter/page-1/internshipNewScreen.dart';
 import 'package:provider/provider.dart';
 import 'page-1/Comapny_Home_page.dart';
 import 'page-1/Student_Home_page.dart';
-import 'page-1/Test.dart';
 import 'page-1/Login_page.dart';
 import 'page-1/register.dart';
 

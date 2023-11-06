@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:inter/models/internshipApplication.dart';
-import 'package:inter/page-1/Test.dart';
+import 'package:inter/page-1/Test.text';
 
 class ApplicationDetailsScreen extends StatelessWidget {
   final Application application;
@@ -76,7 +76,7 @@ class ApplicationDetailsScreen extends StatelessWidget {
                   child: Padding(
                     padding: EdgeInsets.symmetric(horizontal: 16.0),
                     child: Text(
-                      application.detail,
+                      application.name,
                       style: TextStyle(
                           fontWeight: FontWeight.bold,
                           fontSize: 15,

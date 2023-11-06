@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:inter/models/internship.dart';
 import 'package:inter/models/internshipApplication.dart';
 import 'package:inter/page-1/Student_Home_page.dart';
-import '../components/applicationTitle.dart';
+import 'studentAppTitle.text';
 
 class TestPage extends StatefulWidget {
   const TestPage({super.key});
